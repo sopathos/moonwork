@@ -11,11 +11,18 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    
+    <style type="text/css">
+      a:link {text-decoration:none; color:#FFFFFF;}
+      a:visited {text-decoration:none; color:#FFFFFF;}
+      a:active {text-decoration:none; color:#FFFFFF;}
+      a:hover {text-decoration:none; color:#FFFFFF;}
+    </style>
   </head>
   
   <body>
   <!-- 메인 -->
-    <div data-role="page">
+    <div data-role="page" id="main">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
         <h1>한 맛 찾</h1>
@@ -35,10 +42,47 @@
             <li><a href="#" class="ui-btn-active" data-icon="search">식당 검색</a></li>
             <li><a href="#" data-icon="search">음식 검색</a></li>
             <li><a href="#" data-icon="star">빠른 주문</a></li>
-            <li><a href="#" data-icon="check">로그인</a></li>
+            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
           </ul>
         </div>
       </div>
+    </div>
+    
+  <!-- 로그인 -->
+    <div data-role="page" id="login">
+      <!-- 헤더 -->
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <h1>로그인</h1>
+        <div data-role="navbar">
+        </div>
+      </div>
+      
+      <!-- 내용 -->
+      <div data-role="content">
+        <table border="0" style="width:100%">
+          <tr>
+            <td>ID</td><td><input type="text"></input></td>
+          </tr>
+          <tr>
+            <td>PW</td><td><input type="password"></input></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="button" value="로그인" style="width:100%"></td>
+          </tr>
+          <tr>
+            <td colspan="2">회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">회원가입</a></td>
+          </tr>
+          <tr>
+            <td colspan="2">아이디를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">아이디 찾기</a></td>
+          </tr>
+          <tr>
+            <td colspan="2">비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;<a href="#">비밀번호 찾기</a></td>
+          </tr>
+        </table>
+      </div>
+      
     </div>
     
   </body>
