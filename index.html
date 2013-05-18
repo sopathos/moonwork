@@ -12,11 +12,34 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
     
+    <script language="javascript">
+  		$(document).ready(function() {
+  			$("table.order button.add").click(function() {
+  				var table = $(this).parents("table.order");
+  				// Get a new row based on the prototype row
+  
+  				var row = table.find(".row").clone();
+  				row.attr("class", "")
+  				table.find("tbody").append(row);
+  			});
+  
+  			$("table.order button.remove").live("click", function() {  			  
+    		  $(this).parents("tr").remove();
+  			});
+	  	});
+    </script>
+    
     <style type="text/css">
       a:link {text-decoration:none; color:#FFFFFF;}
       a:visited {text-decoration:none; color:#FFFFFF;}
       a:active {text-decoration:none; color:#FFFFFF;}
       a:hover {text-decoration:none; color:#FFFFFF;}
+      
+      td {font-size:9pt;}
+      
+		  .order .row{
+		    display:none;
+		  }
     </style>
   </head>
   
@@ -112,6 +135,44 @@
       <!-- 내용 -->
       <div data-role="content">
         <h1>빠른 주문</h1>
+        <table class="order" width="100%" border="0">
+          <thead>
+            <tr width="15%">
+              <td>식당</td>
+              <td colspan="3"><input type="search"/></td>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="row">
+              <td width="10%">음식</td>
+              <td><input type="search" results="3"></td>
+              <td width="10%"><input type="number" value="0"></td>
+              <td><button class="remove" data-icon="minus" data-iconpos="notext"></td>
+            </tr>
+            <tr>
+              <td width="10%">음식</td>
+              <td><input type="search" results="3"></td>
+              <td width="10%"><input type="number" value="0"></td>
+              <td><button class="remove" data-icon="minus" data-iconpos="notext"></td>
+            </tr>
+          </tbody>
+          
+          <tfoot>
+            <tr>
+              <td colspan="4"><button class="add">음식 추가</td>
+            </tr>
+            <tr>
+              <td width="10%">주소</td>
+              <td colspan="3"><input type="text" style="width:95%"></td>
+            </tr>
+            <tr>
+              <td colspan="4"><input type="submit" value="주문"></td>
+            </tr>
+          </tfoot>
+          
+        </table>
+        
       </div>
       
       <!-- 푸터 -->
@@ -147,18 +208,18 @@
             <td colspan="2"><input type="button" value="로그인" style="width:100%"></td>
           </tr>
         </table>
-        <table style="width:100%">
+        <table table border="0" width="100%">
           <tr>
-            <td style="width:60%; font-size:9pt;">회원이 아니신가요?</td>
-            <td style="width:40%; font-size:9pt;"><a href="#">회원가입</a></td>
+            <td width="60%">회원이 아니신가요?</td>
+            <td width="40%"><a href="#">회원가입</a></td>
           </tr>
           <tr>
-            <td style="font-size:9pt;">아이디를 잊으셨나요?</td>
-            <td style="font-size:9pt;"><a href="#">아이디 찾기</a></td>
+            <td>아이디를 잊으셨나요?</td>
+            <td><a href="#">아이디 찾기</a></td>
           </tr>
           <tr>
-            <td style="font-size:9pt;">비밀번호를 잊으셨나요?</td>
-            <td style="font-size:9pt;"><a href="#">비밀번호 찾기</a></td>
+            <td>비밀번호를 잊으셨나요?</td>
+            <td><a href="#">비밀번호 찾기</a></td>
           </tr>
         </table>
       </div>
