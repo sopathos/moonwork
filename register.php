@@ -14,41 +14,6 @@
 
     <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
-      
-      <!--
-      $(document).ready(function(){
-        $("#sign_in").click(function(){
-          if($("#m_id").val() == ""){
-            alert("아이디를 입력하세요");
-            $("#m_id").focus();
-            return false;
-          }
-          if($("#m_pw").val() == ""){
-            alert("비밀번호를 입력하세요");
-            $("#m_pw").focus();
-            return false;
-          }
-          if($("#m_name").val() == ""){
-            alert("이름를 입력하세요");
-            $("#m_name").focus();
-            return false;
-          }
-          if($("#m_email").val() == ""){
-            alert("이메일를 입력하세요");
-            $("#m_email").focus();
-            return false;
-          }
-          if($("#m_pw").val() != $("#m_pw2").val()){
-            alert("비밀번호 확인하세요");
-            $("#m_pw").val("");
-            $("#m_pw2").val("");
-            $("#m_pw").focus();
-            return false;
-          }
-          $("#sign_in").submit();
-        });
-      });
-      -->
   </head>
   
   <body>
@@ -66,35 +31,35 @@
         <form method="post" action="registerProc.php">
           <table border="0" width="100%">
             <tr>
-              <td><b>아이디</b></td><td><input type="text" id="m_id"></td><td><button>중복체크</button></td>
+              <td><b>아이디</b></td><td><input type="text" id="m_id" name="m_id"></td><td><input type="button" value="중복체크"></td>
             </tr>
             <tr>
               <td><b>비밀번호</b></td>
-              <td colspan="2"><input type="password" id="m_pw"></td>
+              <td colspan="2"><input type="password" id="m_pw" name="m_pw"></td>
             </tr>
             <tr>
               <td><b>비밀번호 확인</b></td>
-              <td colspan="2"><input type="password" id="m_pw2"></td>
+              <td colspan="2"><input type="password" id="m_pw2" name="m_pw2"></td>
             </tr>
             <tr>
               <td><b>이름</b></td>
-              <td colspan="2"><input type="text" id="m_name"></td>
+              <td colspan="2"><input type="text" id="m_name" name="m_name"></td>
             </tr>
             <tr>
               <td><b>이메일</b></td>
-              <td colspan="2"><input type="email" id="m_email"></td>
+              <td colspan="2"><input type="email" id="m_email" name="m_email"></td>
             </tr>
             <tr>
               <td>전화번호</td>
-              <td colspan="2"><input type="text" id="m_phone"></td>
+              <td colspan="2"><input type="text" id="m_phone" name="m_phone"></td>
             </tr>
             <tr>
               <td>전공</td>
-              <td colspan="2"><input type="text" id="m_major"></td>
+              <td colspan="2"><input type="text" id="m_major" name="m_major"></td>
             </tr>
             <tr>
               <td colspan="3">
-              <input type="button" id="sign_in" value="회원가입" data-theme="b" onclick="signIn();"></td>
+              <input type="submit" id="sign_in" value="회원가입" data-theme="b" onclick="signIn();"></td>
           </table>
         </form>
       </div>
