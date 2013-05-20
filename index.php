@@ -12,35 +12,8 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
     
-    <script language="javascript">
-  		$(document).ready(function() {
-  			$("table.order button.add").click(function() {
-  				var table = $(this).parents("table.order");
-  				// Get a new row based on the prototype row
-  
-  				var row = table.find(".row").clone();
-  				row.attr("class", "")
-  				table.find("tbody").append(row);
-  			});
-  
-  			$("table.order button.remove").live("click", function() {  			  
-    		  $(this).parents("tr").remove();
-  			});
-	  	});
-    </script>
-    
-    <style type="text/css">
-      a:link {text-decoration:none; color:#FFFFFF;}
-      a:visited {text-decoration:none; color:#FFFFFF;}
-      a:active {text-decoration:none; color:#FFFFFF;}
-      a:hover {text-decoration:none; color:#FFFFFF;}
-      
-      td {font-size:9pt;}
-      
-		  .order .row{
-		    display:none;
-		  }
-    </style>
+    <script language="javascript" src="MyFunction.js"></script>
+    <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
   </head>
   
   <body>
@@ -167,7 +140,7 @@
               <td colspan="3"><input type="text" style="width:95%"></td>
             </tr>
             <tr>
-              <td colspan="4"><input type="submit" value="주문"></td>
+              <td colspan="4"><input type="button" value="주문" data-theme="b"></td>
             </tr>
           </tfoot>
           

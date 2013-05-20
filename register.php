@@ -12,16 +12,10 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 
-    <style type="text/css">
-      a:link {text-decoration:none; color:#FFFFFF;}
-      a:visited {text-decoration:none; color:#FFFFFF;}
-      a:active {text-decoration:none; color:#FFFFFF;}
-      a:hover {text-decoration:none; color:#FFFFFF;}
+    <script language="javascript" src="MyFunction.js"></script>
+    <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
       
-      td {font-size:9pt;}
-      
-    </style>
-    <script language="javascript">
+      <!--
       $(document).ready(function(){
         $("#sign_in").click(function(){
           if($("#m_id").val() == ""){
@@ -54,12 +48,12 @@
           $("#sign_in").submit();
         });
       });
-    </script>
+      -->
   </head>
   
   <body>
   <!-- 메인 -->
-    <div data-role="page" id="main">
+    <div data-role="page" id="register">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
         <a href="javascript:history.back()" data-icon="back">뒤로</a>
@@ -69,7 +63,7 @@
       
       <!-- 내용 -->
       <div data-role="content">
-        <form id="registerForm" method="post" action="registerProc.php">
+        <form method="post" action="registerProc.php">
           <table border="0" width="100%">
             <tr>
               <td><b>아이디</b></td><td><input type="text" id="m_id"></td><td><button>중복체크</button></td>
@@ -100,7 +94,7 @@
             </tr>
             <tr>
               <td colspan="3">
-              <input type="button" id="sign_in" value="회원가입" data-theme="b"></td>
+              <input type="button" id="sign_in" value="회원가입" data-theme="b" onclick="signIn();"></td>
           </table>
         </form>
       </div>
