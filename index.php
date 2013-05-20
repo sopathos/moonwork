@@ -211,7 +211,7 @@
         <table border="0" width="100%">
           <tr>
             <td>회원이 아니신가요?</td>
-            <td width="50%"><a href="register.html">회원가입</a></td>
+            <td width="50%"><a href="./register.php">회원가입</a></td>
           </tr>
           <tr>
             <td>아이디를 잊으셨나요?</td>
