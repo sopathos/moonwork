@@ -43,7 +43,7 @@
             <?
               if(!$_SESSION[user_id]){
             ?>
-            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
+            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
             <?
               }else{
             ?>
@@ -60,7 +60,7 @@
     <div data-role="page" id="shop">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back">뒤로</a>
+        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
         <a href="#main" data-icon="home">홈</a>
         <h1>한 맛 찾</h1>
       </div>
@@ -79,7 +79,7 @@
           <?
             $i = 0;
             while($i < $shopListRows){
-              echo "<li><a href='#".mysql_result($shopList, $i, id)."'><h3>";
+              echo "<li><a href='shop.php#".mysql_result($shopList, $i, id)."' rel='external' data-transition='slide' data-direction='reverse'><h3>";
               echo "<table width='100%'><tr><td width='50%'>".mysql_result($shopList, $i, name)."</td>";
               echo "<td width='40%'>".mysql_result($shopList, $i, phone)."</td>";
               echo "<td width='10%'>".mysql_result($shopList, $i, score)."</td></tr></table>";
@@ -101,7 +101,7 @@
             <?
               if(!$_SESSION[user_id]){
             ?>
-            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
+            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
             <?
               }else{
             ?>
@@ -118,32 +118,31 @@
     <div data-role="page" id="food">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back">뒤로</a>
+        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
         <a href="#main" data-icon="home">홈</a>
         <h1>한 맛 찾</h1>
       </div>
       
       <!-- 음식 DB -->
       <?php
-        $foodList = mysql_query("select * from food", $conn);
-        $foodListRows = mysql_num_rows($foodList);
+        $foodGenreList = mysql_query("select * from genre", $conn);
+        $foodGenreListRows = mysql_num_rows($foodGenreList);
       ?>
       
       <!-- 내용 -->
       <div data-role="content">
         <h1>음식 검색</h1>
         <ul data-role="listview" data-inset="true">
-          <li data-theme="a"><h3><table width="100%"><tr><td width="50%">음식이름</td><td width="50%">종류</td></tr></table></h3></li>
+          <li data-theme="a"><h3><table width="100%"><tr><td width="100%">종류</td></tr></table></h3></li>
           <?
             $i = 0;
-            while($i < $foodListRows){
-              echo "<li><a href='#".mysql_result($foodList, $i, id)."'><h3>";
-              echo "<table width='100%'><tr><td width='50%'>".mysql_result($foodList, $i, name)."</td>";
-              echo "<td width='50%'>".mysql_result($foodList, $i, genre)."</td></tr></table>";
+            while($i < $foodGenreListRows){
+              echo "<li><a href='food.php#".mysql_result($foodGenreList, $i, id)."' rel='external' data-transition='slide' data-direction='reverse'><h3>";
+              echo "<table width='100%'><tr><td width='50%'>".mysql_result($foodGenreList, $i, name)."</td></tr></table>";
               echo "</h3></a></li>";
               $i++;
             }
-            mysql_free_result($foodList);
+            mysql_free_result($foodGenreList);
           ?>
         </ul>
       </div>
@@ -158,7 +157,7 @@
             <?
               if(!$_SESSION[user_id]){
             ?>
-            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
+            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
             <?
               }else{
             ?>
@@ -175,7 +174,7 @@
     <div data-role="page" id="quick">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back">뒤로</a>
+        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
         <a href="#main" data-icon="home">홈</a>
         <h1>한 맛 찾</h1>
       </div>
@@ -232,7 +231,7 @@
             <?
               if(!$_SESSION[user_id]){
             ?>
-            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
+            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
             <?
               }else{
             ?>
@@ -244,49 +243,12 @@
         </div>
       </div>
     </div>
-   
-  <!-- 로그인 --> 
-    <div data-role="page" id="login">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="b">
-        <h1>로그인</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <form name="loginForm" method="post" action="login_chk.php">
-          <table border="0" style="width:100%">
-            <tr>
-              <td>ID</td><td><input type="text" name="m_id"></input></td>
-            </tr>
-            <tr>
-              <td>PW</td><td><input type="password" name="m_pw"></input></td>
-            </tr>
-            <tr>
-              <td colspan="2"><input type="button" value="로그인" style="width:100%" data-theme="b" onclick="login_chk();"></td>
-            </tr>
-          </table>
-        </form>
-        <table border="0" width="100%">
-          <tr>
-            <td>회원이 아니신가요?</td>
-            <td width="50%"><a href="./register.php">회원가입</a></td>
-          </tr>
-          <tr>
-            <td>아이디를 잊으셨나요?</td>
-            <td width="50%"><a href="#">아이디 찾기</a></td>
-          <tr>
-            <td>비밀번호를 잊으셨나요?</td>
-            <td width="50%"><a href="#">비밀번호 찾기</a></td>
-        </table>
-      </div>
-    </div>
-     
+       
   <!-- 회원정보 --> 
     <div data-role="page" id="member">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back">뒤로</a>
+        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
         <a href="#main" data-icon="home">홈</a>
         <h1>한 맛 찾</h1>
       </div>

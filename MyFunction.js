@@ -13,6 +13,7 @@
 	});
 	
 });
+
 function signIn(){
   if($("#m_id").val() == ""){
     alert("아이디를 입력하세요");
@@ -42,4 +43,23 @@ function signIn(){
     return false;
   }
   $("#sign_in").submit();
+}
+
+function login_chk()
+{
+  var chk = document.loginForm;
+  if(chk.m_id.value == ""){
+    alert("아이디를 입력해주세요");
+    return false;
+  }
+  if(chk.m_pw.value == ""){
+    alert("비밀번호를 입력해주세요");
+    return false;
+  }
+  chk.submit();
+}
+
+function logout()
+{
+  location.href="logout.php";
 }

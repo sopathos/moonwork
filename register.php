@@ -25,7 +25,7 @@
     <div data-role="page" id="register">
       <!-- 헤더 -->
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back">뒤로</a>
+        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
         <a href="index.php" data-icon="home">홈</a>
         <h1>회원가입</h1>
       </div>
@@ -72,10 +72,10 @@
       <div data-role="footer" data-position="fixed" data-theme="b">        
         <div data-role="navbar">
           <ul>
-            <li><a href="#shop" data-icon="search">식당 검색</a></li>
-            <li><a href="#food" data-icon="search">음식 검색</a></li>
-            <li><a href="#quick" data-icon="star">빠른 주문</a></li>
-            <li><a href="#login" data-icon="check" data-rel="dialog">로그인</a></li>
+            <li><a href="index.php#shop" data-icon="search">식당 검색</a></li>
+            <li><a href="index.php#food" data-icon="search">음식 검색</a></li>
+            <li><a href="index.php#quick" data-icon="star">빠른 주문</a></li>
+            <li><a href="index.php#login" data-icon="check" data-rel="dialog">로그인</a></li>
           </ul>
         </div>
       </div>
