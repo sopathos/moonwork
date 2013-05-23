@@ -14,6 +14,10 @@
 
     <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
+    
+  <?
+    include("lib.php");
+  ?>
   </head>
   
   <body>

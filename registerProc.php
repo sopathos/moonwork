@@ -14,12 +14,9 @@
     
     <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
-  </head>
-  <body>
+    
   <?
-    $conn = mysql_connect('localhost','moonwork','hansung08') or die("MySQL Server Connect Error");
-    mysql_select_db('moonwork',$conn) or die("DB 오픈 에러");
-    mysql_query("SET NAMES UTF8");
+    include("lib.php");
     
     $m_id = $_POST['m_id'];
     $m_pw = $_POST['m_pw'];
@@ -36,5 +33,7 @@
     echo "<center>처리중입니다.</center>";
     echo "<script>location.href='index.php'</script>";
   ?>
+  </head>
+  <body>
   </body>
 </html>
