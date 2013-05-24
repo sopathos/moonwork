@@ -14,46 +14,23 @@
     
     <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
-        
+    
   <?
     include("lib.php");
+    
+    $m_id = $_POST['m_id'];
+    
+    $str = "select * from member where id='$m_id'";
+    $result = mysql_query($str, $conn);
+    $rows = mysql_num_rows($result);
+    
+    if($rows){
+      echo "<center>존재하는 아이디입니다.</center>";
+    }else{
+      echo "<center>사용 가능한 아이디입니다..</center>";
+    }
   ?>
   </head>
-  
   <body>
-    <!-- 메인 -->
-    <div data-role="page" id="main">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="a">
-        <h1>한성대 맛집을 찾아서</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <h1>한성대 맛집을 찾아서</h1>
-      </div>
-      
-      <!-- 푸터 -->
-      <?
-        include("footer.php");
-      ?>
-    </div>
-    
-    <?
-      include("shop.php");
-      
-      include("food.php");
-      
-      include("quick.php");
-      
-      include("member.php");
-      
-      include("login.php");
-      
-      include("register.php");
-      
-    ?>
-    
   </body>
-  
 </html>

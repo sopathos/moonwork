@@ -15,34 +15,38 @@
 });
 
 function signIn(){
-  if($("#m_id").val() == ""){
-    alert("아이디를 입력하세요");
-    $("#m_id").focus();
+  var chk = document.signForm;
+  if(chk.m_id.value == ""){
+    alert("아이디를 입력해주세요");
+    chk.m_id.focus();
     return false;
   }
-  if($("#m_pw").val() == ""){
-    alert("비밀번호를 입력하세요");
-    $("#m_pw").focus();
+  if(chk.m_pw.value == ""){
+    alert("비밀번호를 입력해주세요");
+    chk.m_pw.focus();
     return false;
   }
-  if($("#m_name").val() == ""){
-    alert("이름를 입력하세요");
-    $("#m_name").focus();
+  if(chk.m_pw2.value == ""){
+    alert("비밀번호를 확인해주세요");
+    chk.m_pw2.focus();
     return false;
   }
-  if($("#m_email").val() == ""){
-    alert("이메일를 입력하세요");
-    $("#m_email").focus();
+  if(chk.m_name.value == ""){
+    alert("이름을 입력해주세요");
+    chk.m_name.focus();
     return false;
   }
-  if($("#m_pw").val() != $("#m_pw2").val()){
-    alert("비밀번호 확인하세요");
-    $("#m_pw").val("");
-    $("#m_pw2").val("");
-    $("#m_pw").focus();
+  if(chk.m_email.value == ""){
+    alert("이메일을 입력해주세요");
+    chk.m_email.focus();
     return false;
   }
-  $("#sign_in").submit();
+  if(chk.m_pw.value != chk.m_pw2.value){
+    alert("비밀번호를 확인해주세요");
+    chk.m_pw.focus();
+    return false;
+  }
+  chk.submit();
 }
 
 function login_chk()
@@ -50,10 +54,12 @@ function login_chk()
   var chk = document.loginForm;
   if(chk.m_id.value == ""){
     alert("아이디를 입력해주세요");
+    chk.m_id.focus();
     return false;
   }
   if(chk.m_pw.value == ""){
     alert("비밀번호를 입력해주세요");
+    chk.m_pw.focus();
     return false;
   }
   chk.submit();

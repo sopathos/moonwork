@@ -25,13 +25,22 @@
     $m_phone = $_POST['m_phone'];
     $m_major = $_POST['m_major'];
     
-    $str = "insert into member(id,pw,name,email,phone,major) values('$m_id','$m_pw','$m_name','$m_email','$m_phone','$m_major')";
+    $chk = "select * from member where id='$m_id'";
+    $chk_result = mysql_query($chk);
+    $chk_data = mysql_fetch_array($chk_result);
     
-    mysql_query($str) or die(mysql_error());
-    mysql_close($conn);
+    if($chk_data[no]){
+      echo "<script>alert('이미 가입된 아이디입니다.');";
+      echo "history.back();</script>";
+    }else{
+      $str = "insert into member(id,pw,name,email,phone,major) values('$m_id','$m_pw','$m_name','$m_email','$m_phone','$m_major')";
+      mysql_query($str) or die(mysql_error());
+      mysql_close($conn);
+      
+      echo "<center>처리중입니다.</center>";
+      echo "<script>location.href='index.php'</script>";
+    }
     
-    echo "<center>처리중입니다.</center>";
-    echo "<script>location.href='index.php'</script>";
   ?>
   </head>
   <body>

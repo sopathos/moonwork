@@ -1,175 +1,110 @@
-﻿<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    
-    <title>한성대 맛집을 찾아서</title>
-    
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css"/>
-    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-    
-    <script language="javascript" src="MyFunction.js"></script>
-    <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
-        
+﻿<!-- 식당 검색 -->
+<div data-role="page" id="shop">
+  <!-- 헤더 -->
   <?
-    include("lib.php");
+    include("header.php");
   ?>
-  </head>
   
-  <body>
+  <!-- 식당 DB -->
+  <?
+    $shopList = mysql_query("select * from shop", $conn);
+    $shopListRows = mysql_num_rows($shopList);
+  ?>
   
-  <!-- 윤가네 -->
-    <div data-role="page" id="yoon">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
-        <a href="#main" data-icon="home">홈</a>
-        <h1>한 맛 찾</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <h1>윤 가 네</h1>
-      </div>
-      
-      <!-- 푸터 -->
-      <div data-role="footer" data-position="fixed" data-theme="b">        
-        <div data-role="navbar">
-          <ul>
-            <li><a href="index.php#shop" class="ui-btn-active" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">식당 검색</a></li>
-            <li><a href="index.php#food" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">음식 검색</a></li>
-            <li><a href="index.php#quick" data-icon="star" rel="external" data-transition="slide" data-direction="reverse">빠른 주문</a></li>
-            <?
-              if(!$_SESSION[user_id]){
-            ?>
-            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
-            <?
-              }else{
-            ?>
-            <li><a href="index.php#member" data-icon="check" rel="external">회원정보</a></li>
-            <?
-              }
-            ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-    
-  <!-- 김밥천국 -->
-    <div data-role="page" id="gbheaven">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
-        <a href="#main" data-icon="home">홈</a>
-        <h1>한 맛 찾</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <h1>김 밥 천 국</h1>
-      </div>
-      
-      <!-- 푸터 -->
-      <div data-role="footer" data-position="fixed" data-theme="b">        
-        <div data-role="navbar">
-          <ul>
-            <li><a href="index.php#shop" class="ui-btn-active" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">식당 검색</a></li>
-            <li><a href="index.php#food" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">음식 검색</a></li>
-            <li><a href="index.php#quick" data-icon="star" rel="external" data-transition="slide" data-direction="reverse">빠른 주문</a></li>
-            <?
-              if(!$_SESSION[user_id]){
-            ?>
-            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
-            <?
-              }else{
-            ?>
-            <li><a href="index.php#member" data-icon="check" rel="external">회원정보</a></li>
-            <?
-              }
-            ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-    
-  <!-- 김밥 천지 -->
-    <div data-role="page" id="gbland">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
-        <a href="#main" data-icon="home">홈</a>
-        <h1>한 맛 찾</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <h1>김 밥 천 지</h1>
-      </div>
-      
-      <!-- 푸터 -->
-      <div data-role="footer" data-position="fixed" data-theme="b">
-        <div data-role="navbar">
-          <ul>
-            <li><a href="index.php#shop" class="ui-btn-active" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">식당 검색</a></li>
-            <li><a href="index.php#food" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">음식 검색</a></li>
-            <li><a href="index.php#quick" data-icon="star" rel="external" data-transition="slide" data-direction="reverse">빠른 주문</a></li>
-            <?
-              if(!$_SESSION[user_id]){
-            ?>
-            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
-            <?
-              }else{
-            ?>
-            <li><a href="#member" data-icon="check">회원정보</a></li>
-            <?
-              }
-            ?>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <!-- 내용 -->
+  <div data-role="content">
+    <h1>식당 검색</h1>
+    <ul data-role="listview" data-inset="true">
+      <li data-theme="a"><h3><table width="100%"><tr><td width="50%">식당이름</td><td width="40%">전화번호</td><td width="10%">평점</td></tr></table></h3></li>
+      <?
+        $i = 0;
+        while($i < $shopListRows){
+          echo "<li><a href='#".mysql_result($shopList, $i, id)."' data-transition='slide'><h3>";
+          echo "<table width='100%'><tr><td width='50%'>".mysql_result($shopList, $i, name)."</td>";
+          echo "<td width='40%'>".mysql_result($shopList, $i, phone)."</td>";
+          echo "<td width='10%'>".mysql_result($shopList, $i, score)."</td></tr></table>";
+          echo "</h3></a></li>";
+          $i++;
+        }
+        mysql_free_result($shopList);
+      ?>
+    </ul>
+  </div>
   
-  <!-- 승리장 -->
-    <div data-role="page" id="victory">
-      <!-- 헤더 -->
-      <div data-role="header" data-position="fixed" data-theme="b">
-        <a href="javascript:history.back()" data-icon="back" data-direction="reverse">뒤로</a>
-        <a href="#main" data-icon="home">홈</a>
-        <h1>한 맛 찾</h1>
-      </div>
-      
-      <!-- 내용 -->
-      <div data-role="content">
-        <h1>승 리 장</h1>
-      </div>
-      
-      <!-- 푸터 -->
-      <div data-role="footer" data-position="fixed" data-theme="b">        
-        <div data-role="navbar">
-          <ul>
-            <li><a href="index.php#shop" class="ui-btn-active" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">식당 검색</a></li>
-            <li><a href="index.php#food" data-icon="search" rel="external" data-transition="slide" data-direction="reverse">음식 검색</a></li>
-            <li><a href="index.php#quick" data-icon="star" rel="external" data-transition="slide" data-direction="reverse">빠른 주문</a></li>
-            <?
-              if(!$_SESSION[user_id]){
-            ?>
-            <li><a href="login.php" data-icon="check" data-rel="dialog">로그인</a></li>
-            <?
-              }else{
-            ?>
-            <li><a href="index.php#member" data-icon="check" rel="external">회원정보</a></li>
-            <?
-              }
-            ?>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <!-- 푸터 -->
+  <?
+    include("footer.php");
+  ?>
+</div>
   
-  </body>
+<!-- 윤가네 -->
+<div data-role="page" id="yoon">
+  <!-- 헤더 -->
+  <?
+    include("header.php");
+  ?>
   
-</html>
+  <!-- 내용 -->
+  <div data-role="content">
+    <h1>윤 가 네</h1>
+  </div>
+  
+  <!-- 푸터 -->
+  <?
+    include("footer.php");
+  ?>
+</div>
+
+<!-- 김밥천국 -->
+<div data-role="page" id="gbheaven">
+  <!-- 헤더 -->
+  <?
+    include("header.php");
+  ?>
+  
+  <!-- 내용 -->
+  <div data-role="content">
+    <h1>김 밥 천 국</h1>
+  </div>
+  
+  <!-- 푸터 -->
+  <?
+    include("footer.php");
+  ?>
+</div>
+
+<!-- 김밥 천지 -->
+<div data-role="page" id="gbland">
+  <!-- 헤더 -->
+  <?
+    include("header.php");
+  ?>
+  
+  <!-- 내용 -->
+  <div data-role="content">
+    <h1>김 밥 천 지</h1>
+  </div>
+  
+  <!-- 푸터 -->
+  <?
+    include("footer.php");
+  ?>
+</div>
+
+<!-- 승리장 -->
+<div data-role="page" id="victory">
+  <!-- 헤더 -->
+  <?
+    include("header.php");
+  ?>
+  
+  <!-- 내용 -->
+  <div data-role="content">
+    <h1>승 리 장</h1>
+  </div>
+  
+  <!-- 푸터 -->
+  <?
+    include("footer.php");
+  ?>
+</div>
