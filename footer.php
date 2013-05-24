@@ -2,7 +2,7 @@
   <div data-role="navbar">
     <ul>
       <li><a href="#shop" data-icon="search"  data-transition="slide">식당 검색</a></li>
-      <li><a href="#food" data-icon="search"  data-transition="slide">음식 검색</a></li>
+      <li><a href="#theme" data-icon="search"  data-transition="slide">테마 검색</a></li>
       <li><a href="#quick" data-icon="star"  data-transition="slide">빠른 주문</a></li>
       <?
         if(!$_SESSION[user_id]){
