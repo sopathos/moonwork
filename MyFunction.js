@@ -11,7 +11,6 @@
 	$("table.order button.remove").live("click", function() {  			  
 	  $(this).parents("tr").remove();
 	});
-	
 });
 
 function signIn(){
