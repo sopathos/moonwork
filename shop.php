@@ -45,25 +45,46 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='윤가네' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='윤가네' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
   <!-- 내용 -->
   <div data-role="content">
-    <table align="center" width="100%">
+    <table align="center" width="100%" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">
@@ -101,7 +122,8 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='김밥천국' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='김밥천국' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
@@ -109,17 +131,37 @@
   <div data-role="content">
     <table align="center" width="100%">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/none.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">
@@ -157,7 +199,8 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='김밥천지' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='김밥천지' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
@@ -165,17 +208,37 @@
   <div data-role="content">
     <table align="center" width="100%">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/none.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">
@@ -213,7 +276,8 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='승리장' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='승리장' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
@@ -221,17 +285,37 @@
   <div data-role="content">
     <table align="center" width="100%">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/none.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">
@@ -269,7 +353,8 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='한아름' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='한아름' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
@@ -277,17 +362,37 @@
   <div data-role="content">
     <table align="center" width="100%">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/none.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">
@@ -325,7 +430,8 @@
     $data = mysql_fetch_array($shop);
     $j = 0;
     
-    $food = mysql_query("select distinct menu.*, food.genre from menu,food where menu.shop_name='한성분식' and menu.food_name = food.name order by food.genre asc, price asc", $conn);
+    $sql = "select distinct menu.*, food.genre from menu,food where menu.shop_name='한성분식' and menu.food_name = food.name order by food.genre asc, price asc";
+    $food = mysql_query($sql, $conn);
     $foodRow = mysql_num_rows($food);
   ?>
   
@@ -333,17 +439,37 @@
   <div data-role="content">
     <table align="center" width="100%">
       <tr>
-        <td width="50%" rowspan="3" align="center"><img border="0" width="85%" src="image/Yoongane.png"></td>
-        <td width="50%" align="center"><h1><? echo mysql_result($shop, $j, name); ?></h1></td>
-      </tr>
-      <tr><td align="center"><? echo mysql_result($shop, $j, phone); ?></td></tr>
-      <tr><td align="center">
-      <?
-        for($iter=0; $iter<$data[score]; $iter++){
-          echo "★";
-        }
-        echo "(".mysql_result($shop, $j, score).")"; ?>
-      </td></tr>
+        <td width="50%" align="center"><img border="0" width="85%" src="image/none.png"></td>
+        <td width="50%" align="center">
+          <table>
+            <tr>
+              <th align="center" height="30"><h2><? echo mysql_result($shop, $j, name); ?></h2></th>
+            </tr>
+            <tr><td align="center" height="30"><? echo mysql_result($shop, $j, phone); ?></td></tr>
+            <tr><td align="center" height="30">
+            <?
+              $iter=0;
+              for($iter; $iter<round($data[score]); $iter++){
+                echo "★";
+              }
+              for($iter ; $iter<5 ; $iter++){
+                echo "☆";
+              }
+              echo "(".mysql_result($shop, $j, score)."/5)"; ?>
+            </td></tr>
+            <tr>
+              <td align="center" height="30">
+            <?
+              if($data[deliver]==1){
+                echo "배달 가능";
+              }else{
+                echo "배달 불가";
+              }
+            ?>
+              </td>
+            </tr>
+          </table>
+        </td>
       <tr>
         <td colspan="2">
           <ul data-role="listview" data-inset="true">

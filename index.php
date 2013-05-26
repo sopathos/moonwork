@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meata name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     
     <title>한성대 맛집을 찾아서</title>
     
@@ -12,9 +12,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
     
-    <script language="text/javascript" src="MyFunction.js"></script>
-    <script language="text/javascript" src="jquery.js"></script>
-    <script language="text/javascript" src="jquery.pngFix.js"></script>
+    <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
         
   <?
@@ -43,8 +41,6 @@
     
     <?
       include("shop.php");
-      
-      include("food.php");
       
       include("theme.php");
       

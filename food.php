@@ -19,7 +19,7 @@
       <?
         $i = 0;
         while($i < $foodGenreListRows){
-          echo "<li><a href='#".mysql_result($foodGenreList, $i, id)."'  data-transition='slide'><h3>";
+          echo "<li><a href='food.php#".mysql_result($foodGenreList, $i, id)."'  data-transition='slide'><h3>";
           echo "<table width='100%'><tr><td width='50%'>".mysql_result($foodGenreList, $i, name)."</td></tr></table>";
           echo "</h3></a></li>";
           $i++;
