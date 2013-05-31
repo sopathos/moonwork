@@ -4,11 +4,11 @@
   <?
     include("header.php");
     
-    $shop1 = mysql_query("select * from shop where deliver='1' order by name asc", $conn);
-    $shopRow1 = mysql_num_rows($shop1);
+    $deliver = mysql_query("select * from shop where deliver='1' order by name asc", $conn);
+    $deliverRow = mysql_num_rows($deliver);
     
-    $shop = mysql_query("select * from shop", $conn);
-    $shopRow = mysql_num_rows($shop);
+    $booked = mysql_query("select * from shop", $conn);
+    $bookedRow = mysql_num_rows($booked);
   ?>
   
   <div data-role="content">
@@ -16,8 +16,11 @@
       <li data-theme="a"><h3><table width="100%"><tr><td>배달</td></table></h3></li>
       <?
         $i = 0;
-        for($i;$i<$shopRow1;$i++){
-          echo "<li><h3><table><tr><td>".mysql_result($shop1, $i, name)."</td></tr></table></h3></li>";
+        while($i < $deliverRow){
+          echo "<li><a href='#".mysql_result($deliver, $i, id)."_deliver' data-transition='slide'><h3>";
+          echo "<table><tr><td>".mysql_result($deliver, $i, name)."</td></tr></table>";
+          echo "</h3></a></li>";
+          $i++;
         }
       ?>
     </ul>
@@ -25,8 +28,11 @@
       <li data-theme="a"><h3><table width="100%"><tr><td>예약</td></table></h3></li>
       <?
        $i = 0;
-        for($i;$i<$shopRow;$i++){
-          echo "<li><h3><table><tr><td>".mysql_result($shop, $i, name)."</td></tr></table></h3></li>";
+        while($i < $bookedRow){
+          echo "<li><h3>";
+          echo "<table><tr><td>".mysql_result($booked, $i, name)."</td></tr></table>";
+          echo "</h3></li>";
+          $i++;
         }
       ?>
     </ul>
@@ -37,59 +43,44 @@
   ?>
 </div>
 
+<?
+  $i=0;
+  while($i < $deliverRow){
+?>
 <!-- 배달 -->
-<div data-role="page" id="order">
-  <!-- 헤더 -->
+<div data-role="page" id="<?=mysql_result($deliver, $i, id)?>_deliver">
+
   <?
     include("header.php");
-  ?>
-  
-  <!-- 내용 -->
-  <div data-role="content">
-    <h1>빠른 주문</h1>
-    <table class="order" width="100%" border="0">
-      <thead>
-        <tr width="15%">
-          <td>식당</td><td colspan="3"><input type="text"/></td>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr class="row">
-          <td width="10%">음식</td>
-          <td><input type="search" results="3"></td>
-          <td width="10%"><input type="number" value="0"></td>
-          <td><button class="remove" data-icon="minus" data-iconpos="notext"></td>
-        </tr>
-        <tr>
-          <td width="10%">음식</td>
-          <td><input type="search" results="3"></td>
-          <td width="10%"><input type="number" value="0"></td>
-          <td><button class="remove" data-icon="minus" data-iconpos="notext"></td>
-        </tr>
-      </tbody>
-      
-      <tfoot>
-        <tr>
-          <td colspan="4"><button class="add">음식 추가</td>
-        </tr>
-        <tr>
-          <td width="10%">주소</td>
-          <td colspan="3"><input type="text" style="width:95%"></td>
-        </tr>
-        <tr>
-          <td colspan="4"><input type="button" value="주문" data-theme="a"></td>
-        </tr>
-      </tfoot>
-      
-    </table>
     
+    $deliverShopId = mysql_result($deliver, $i, id);
+    $deliverShop = mysql_query("select * from shop where id='$deliverShopId'", $conn);
+    $deliverShopData = mysql_fetch_array($deliverShop);
+    
+    $foodList = mysql_query("SELECT * FROM menu WHERE menu.shop='$deliverShopData[name]'", $conn);
+    $foodListRows = mysql_num_rows($foodList);
+    
+  ?>
+  <div data-role="content">
+    <ul data-role="listview" data-inset="true">
+      <li data-theme="a"><table width="100%"><tr><td align="center" width="50%">음식 이름</td><td align="center" width="50%">가격</td></table></li>
+      <?
+        $j=0;
+        while($j < $foodListRows){
+          echo "<li><h3><table border='0' width='100%'><tr>";
+          echo "<td align='center' width='50%'><input type='checkbox'>".mysql_result($foodList, $j, food)."</input></td>";
+          echo "<td align='center' width='50%'>".mysql_result($foodList, $j, price)."</td>";
+          echo "</tr></table></h3></li>";
+          $j++;
+        }
+      ?>
+    </ul>
   </div>
-  
-  <!-- 푸터 -->
   <?
     include("footer.php");
   ?>
 </div>
-
-<!-- 배달 -->
+<?
+  $i++;
+  }
+?>

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
+<?
+  include("lib.php");
+?>
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -15,9 +18,6 @@
     <script language="javascript" src="MyFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
         
-  <?
-    include("lib.php");
-  ?>
   </head>
   
   <body>

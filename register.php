@@ -1,4 +1,4 @@
-﻿<div data-role="page" id="register">
+<div data-role="page" id="register">
   <!-- 헤더 -->
   <div data-role="header" data-position="fixed" data-theme="a">
     <h1>회원가입</h1>

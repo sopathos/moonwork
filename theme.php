@@ -7,8 +7,8 @@
   
   <!-- 테마 DB -->
   <?
-    $themeList = mysql_query("select * from theme order by name asc", $conn);
-    $themeListRows = mysql_num_rows($themeList);
+    $genreList = mysql_query("select * from genre order by name asc", $conn);
+    $genreListRows = mysql_num_rows($genreList);
   ?>
   
   <!-- 내용 -->
@@ -17,13 +17,12 @@
       <li data-theme="a"><h3><table width="100%"><tr><td width="100%">음식 종류별 분류</td></tr></table></h3></li>
       <?
         $i = 0;
-        while($i < $themeListRows){
-          echo "<li><a href='#".mysql_result($themeList, $i, id)."'  data-transition='slide'><h3>";
-          echo "<table width='100%'><tr><td width='50%'>".mysql_result($themeList, $i, name)."</td></tr></table>";
+        while($i < $genreListRows){
+          echo "<li><a href='#".mysql_result($genreList, $i, id)."'  data-transition='slide'><h3>";
+          echo "<table width='100%'><tr><td width='50%'>".mysql_result($genreList, $i, name)."</td></tr></table>";
           echo "</h3></a></li>";
           $i++;
         }
-        mysql_free_result($themeList);
       ?>
     </ul>
   </div>
@@ -34,82 +33,44 @@
   ?>
 </div>
 
-<!-- 분식 -->
-<div data-role="page" id="snack">
-  <!-- 헤더 -->
-  <?
-    include("header.php");
-    
-    $sql = "SELECT distinct food.name, menu.shop_name, menu.price FROM theme,genre,food,menu where theme.name = genre.theme and food.genre = genre.name and genre.theme='분식' and menu.food_name = food.name order by food.name asc, menu.price asc";
-    $foodList = mysql_query($sql, $conn);
-    $foodListRow = mysql_num_rows($foodList);
-  ?>
-  
-  <!-- 내용 -->
-  <? include("theme_content.php") ?>
-    
-  <!-- 푸터 -->
-  <?
-    include("footer.php");
-  ?>
-</div>
 
-<!-- 양식 -->
-<div data-role="page" id="american">
+<?
+  $i = 0;
+  while($i < $genreListRows){
+?>
+<div data-role="page" id="<?=mysql_result($genreList, $i, id)?>">
   <!-- 헤더 -->
   <?
     include("header.php");
-    
-    $sql = "SELECT distinct food.name, menu.shop_name, menu.price FROM theme,genre,food,menu where theme.name = genre.theme and food.genre = genre.name and genre.theme='양식' and menu.food_name = food.name order by food.name asc, menu.price asc";
-    $foodList = mysql_query($sql, $conn);
-    $foodListRow = mysql_num_rows($foodList);
+    $genreId = mysql_result($genreList, $i, id);
+    $genreData = mysql_query("select menu.* from menu, genre, food where genre.id='$genreId' and genre.name = food.genre and food.name = menu.food order by food.type asc, menu.food asc", $conn);
+    $genreDataRows = mysql_num_rows($genreData);
   ?>
   
   <!-- 내용 -->
-  <? include("theme_content.php") ?>
-    
+  <div data-role="content">
+    <ul data-role="listview" data-inset="true">
+      <li data-theme="a"><h3><table width="100%"><tr><td width="30%" align="center">음식</td><td width="40%"align="center">판매가게</td><td width="30%"align="center">가격</td></tr></table></h3></li>
+      <?
+        $j = 0;
+        while($j < $genreDataRows){
+          echo "<li><h3><table width='100%'><tr>";
+          echo "<td width='30%' align='center'>".mysql_result($genreData, $j, menu.".".food)."</td>";
+          echo "<td width='40%' align='center'>".mysql_result($genreData, $j, menu.".".shop)."</td>";
+          echo "<td width='30%' align='center'>".mysql_result($genreData, $j, menu.".".price)."</td>";
+          echo "</tr></table></h3></a></li>";
+          $j++;
+        }
+      ?>
+    </ul>
+  </div>
+  
   <!-- 푸터 -->
   <?
     include("footer.php");
   ?>
 </div>
-
-<!-- 중식 -->
-<div data-role="page" id="chinese">
-  <!-- 헤더 -->
-  <?
-    include("header.php");
-    
-    $sql = "SELECT distinct food.name, menu.shop_name, menu.price FROM theme,genre,food,menu where theme.name = genre.theme and food.genre = genre.name and genre.theme='중식' and menu.food_name = food.name order by food.name asc, menu.price asc";
-    $foodList = mysql_query($sql, $conn);
-    $foodListRow = mysql_num_rows($foodList);
-  ?>
-  
-  <!-- 내용 -->
-  <? include("theme_content.php") ?>
-    
-  <!-- 푸터 -->
-  <?
-    include("footer.php");
-  ?>
-</div>
-
-<!-- 한식 -->
-<div data-role="page" id="korean">
-  <!-- 헤더 -->
-  <?
-    include("header.php");
-    
-    $sql = "SELECT distinct food.name, menu.shop_name, menu.price FROM theme,genre,food,menu where theme.name = genre.theme and food.genre = genre.name and genre.theme='한식' and menu.food_name = food.name order by food.name asc, menu.price asc";
-    $foodList = mysql_query($sql, $conn);
-    $foodListRow = mysql_num_rows($foodList);
-  ?>
-  
-  <!-- 내용 -->
-  <? include("theme_content.php") ?>
-    
-  <!-- 푸터 -->
-  <?
-    include("footer.php");
-  ?>
-</div>
+<?
+  $i++;
+  }
+?>
