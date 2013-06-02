@@ -13,8 +13,7 @@
   
   <!-- 내용 -->
   <div data-role="content">
-    <ul data-role="listview" data-inset="true">
-      <li data-theme="a"><h3><table width="100%"><tr><td>식당 검색</td></table></h3></li>
+    <ul data-role="listview">
 <?
   $i = 0;
   while($i < $shopListRows){

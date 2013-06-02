@@ -2,6 +2,7 @@
 <div data-role="page" id="quick">
   <!-- 헤더 -->
   <?
+  
     include("header.php");
     
     $deliver = mysql_query("select * from shop where deliver='1' order by name asc", $conn);
@@ -12,8 +13,8 @@
   ?>
   
   <div data-role="content">
-    <ul data-role="listview" data-inset="true">
-      <li data-theme="a"><h3><table width="100%"><tr><td>배달</td></table></h3></li>
+    <ul data-role="listview">
+      <li data-theme="a"><table width="100%"><tr><td>배달</td></table></li>
       <?
         $i = 0;
         while($i < $deliverRow){
@@ -23,9 +24,7 @@
           $i++;
         }
       ?>
-    </ul>
-    <ul data-role="listview" data-inset="true">
-      <li data-theme="a"><h3><table width="100%"><tr><td>예약</td></table></h3></li>
+      <li data-theme="a"><table width="100%"><tr><td>예약</td></table></li>
       <?
        $i = 0;
         while($i < $bookedRow){
@@ -51,6 +50,7 @@
 <div data-role="page" id="<?=mysql_result($deliver, $i, id)?>_deliver">
 
   <?
+  
     include("header.php");
     
     $deliverShopId = mysql_result($deliver, $i, id);
@@ -59,22 +59,25 @@
     
     $foodList = mysql_query("SELECT * FROM menu WHERE menu.shop='$deliverShopData[name]'", $conn);
     $foodListRows = mysql_num_rows($foodList);
-    
   ?>
+  
   <div data-role="content">
-    <ul data-role="listview" data-inset="true">
-      <li data-theme="a"><table width="100%"><tr><td align="center" width="50%">음식 이름</td><td align="center" width="50%">가격</td></table></li>
-      <?
-        $j=0;
-        while($j < $foodListRows){
-          echo "<li><h3><table border='0' width='100%'><tr>";
-          echo "<td align='center' width='50%'><input type='checkbox'>".mysql_result($foodList, $j, food)."</input></td>";
-          echo "<td align='center' width='50%'>".mysql_result($foodList, $j, price)."</td>";
-          echo "</tr></table></h3></li>";
-          $j++;
-        }
-      ?>
+  <form name="orderForm" method="post" action="order.php">
+    <ul data-role="listview">    
+    <li><input type="button" value="주문하기" data-theme="a" onclick="javascript:myOrder()"/></li>
+    <?
+      $j=0;
+      while($j < $foodListRows){
+        echo "<li><table width='100%'><tr>";
+        echo "<td width='50%'><input type='hidden' id='".mysql_result($foodList, $j, food)."' value='".mysql_result($foodList, $j, food)."'/>".mysql_result($foodList, $j, food)."</td>";
+        echo "<td width='35%'><input type='hidden' id='".mysql_result($foodList, $j, food)."_price' value='".mysql_result($foodList, $j, food)."'/>".mysql_result($foodList, $j, price)."</td>";
+        echo "<td width='15%'><input type='number' id='".mysql_result($foodList, $j, food)."_num' value='0'></td>";
+        echo "</tr></table></li>";
+        $j++;
+      }
+    ?>
     </ul>
+  </form>
   </div>
   <?
     include("footer.php");

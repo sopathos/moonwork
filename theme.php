@@ -13,8 +13,8 @@
   
   <!-- 내용 -->
   <div data-role="content">
-    <ul data-role="listview" data-inset="true">
-      <li data-theme="a"><h3><table width="100%"><tr><td width="100%">음식 종류별 분류</td></tr></table></h3></li>
+    <ul data-role="listview">
+      <li data-theme="a"><table width="100%"><tr><td width="100%">음식 종류별 분류</td></tr></table></li>
       <?
         $i = 0;
         while($i < $genreListRows){

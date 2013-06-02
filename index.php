@@ -14,10 +14,10 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-    
-    <script language="javascript" src="MyFunction.js"></script>
-    <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
         
+    <link rel="stylesheet" type="text/css" href="MyStyle.css"/>
+    <script language="javascript" src="MyFunction.js"></script>
+    
   </head>
   
   <body>
@@ -45,6 +45,8 @@
       include("theme.php");
       
       include("quick.php");
+      
+      include("order.php");
       
       include("member.php");
       
