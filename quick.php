@@ -57,21 +57,22 @@
     $deliverShop = mysql_query("select * from shop where id='$deliverShopId'", $conn);
     $deliverShopData = mysql_fetch_array($deliverShop);
     
-    $foodList = mysql_query("SELECT * FROM menu WHERE menu.shop='$deliverShopData[name]'", $conn);
+    $foodList = mysql_query("select menu.*, food.id from food, menu where menu.shop='$deliverShopData[name]' and menu.food = food.name", $conn);
     $foodListRows = mysql_num_rows($foodList);
   ?>
   
   <div data-role="content">
   <form name="orderForm" method="post" action="order.php">
-    <ul data-role="listview">    
-    <li><input type="button" value="주문하기" data-theme="a" onclick="javascript:myOrder()"/></li>
+  <input type="hidden" name="m_shop" value="<?=mysql_result($deliver, $i, name)?>"/>
+    <ul data-role="listview">
+    <li><input type="submit" value="주문하기" data-theme="a"></li>   
     <?
       $j=0;
       while($j < $foodListRows){
         echo "<li><table width='100%'><tr>";
-        echo "<td width='50%'><input type='hidden' id='".mysql_result($foodList, $j, food)."' value='".mysql_result($foodList, $j, food)."'/>".mysql_result($foodList, $j, food)."</td>";
-        echo "<td width='35%'><input type='hidden' id='".mysql_result($foodList, $j, food)."_price' value='".mysql_result($foodList, $j, food)."'/>".mysql_result($foodList, $j, price)."</td>";
-        echo "<td width='15%'><input type='number' id='".mysql_result($foodList, $j, food)."_num' value='0'></td>";
+        echo "<td width='50%'><input type='hidden' name='m_".mysql_result($foodList, $j, food.".".id)."' value='".mysql_result($foodList, $j, menu.".".food)."'/>".mysql_result($foodList, $j, menu.".".food)."</td>";
+        echo "<td width='35%'><input type='hidden' name='m_".mysql_result($foodList, $j, food.".".id)."_price' value='".mysql_result($foodList, $j, menu.".".food)."'/>".mysql_result($foodList, $j, menu.".".price)."</td>";
+        echo "<td width='15%'><input type='number' name='m_".mysql_result($foodList, $j, food.".".id)."_num' value='0'></td>";
         echo "</tr></table></li>";
         $j++;
       }
