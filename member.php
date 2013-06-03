@@ -9,10 +9,10 @@
   <div data-role="content">
     <table border="0" width="100%">
       <tr>
-        <td colspan="2"><input type="button" value="주문 내역 확인" onclick="myOrder();"/></td>
+        <td colspan="2"><a href="#myorder" data-rel="dialog"><input type="button" value="주문 내역 확인" data-theme="a"/></a></td>
       </tr>
       <tr>
-        <td colspan="2"><input type="button" value="로그아웃" onclick="logout();"/></td>
+        <td colspan="2"><input type="button" value="로그아웃" onclick="logout();" data-theme="a"/></td>
       </tr>
       <tr>
         <td>회원번호</td>

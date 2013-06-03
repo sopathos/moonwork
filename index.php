@@ -46,9 +46,9 @@
       
       include("quick.php");
       
-      include("order.php");
-      
       include("member.php");
+      
+      include("myorder.php");
       
       include("login.php");
       

@@ -71,11 +71,12 @@
       while($j < $foodListRows){
         echo "<li><table width='100%'><tr>";
         echo "<td width='50%'><input type='hidden' name='m_".mysql_result($foodList, $j, food.".".id)."' value='".mysql_result($foodList, $j, menu.".".food)."'/>".mysql_result($foodList, $j, menu.".".food)."</td>";
-        echo "<td width='35%'><input type='hidden' name='m_".mysql_result($foodList, $j, food.".".id)."_price' value='".mysql_result($foodList, $j, menu.".".food)."'/>".mysql_result($foodList, $j, menu.".".price)."</td>";
+        echo "<td width='35%'><input type='hidden' name='m_".mysql_result($foodList, $j, food.".".id)."_price' value='".mysql_result($foodList, $j, menu.".".price)."'/>".mysql_result($foodList, $j, menu.".".price)."</td>";
         echo "<td width='15%'><input type='number' name='m_".mysql_result($foodList, $j, food.".".id)."_num' value='0'></td>";
         echo "</tr></table></li>";
         $j++;
       }
+      $k=0;
     ?>
     </ul>
   </form>
