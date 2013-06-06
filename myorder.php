@@ -6,12 +6,12 @@
   </div>
   <?
     $m_id = $_SESSION[user_id];
-    $orderList = mysql_query("SELECT * from receipt WHERE customer='$m_id'", $conn);
+    $orderList = mysql_query("SELECT * from receipt WHERE customer='$m_id' order by no desc", $conn);
     $orderListRow = mysql_num_rows($orderList);
   ?>
   <!-- 내용 -->
   <div data-role="content">
-    <table border="0" width="100%">
+    <table border="1" cellpadding="0" cellspacing="0"  width="100%">
     <tr><td width="70%"><h3><b>주문 내역</b></h3></td><td width="30%"><h3><b>가격</b></h3></td>
     <?
       $i=0;

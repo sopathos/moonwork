@@ -1,10 +1,10 @@
 ﻿$(document).ready(function() {
+  var id=0;
 	$("table.order button.add").click(function() {
 		var table = $(this).parents("table.order");
-		// Get a new row based on the prototype row
-
+		
 		var row = table.find(".row").clone();
-		row.attr("class", "")
+		row.attr("class", "");
 		table.find("tbody").append(row);
 	});
 
@@ -48,6 +48,16 @@ function signIn(){
   chk.submit();
 }
 
+function writeCheck(){
+  var chk = document.writeForm;
+  if(chk.m_content.value == ""){
+    alert("내용을 입력해주세요");
+    chk.m_id.focus();
+    return false;
+  }
+  chk.submit();
+}
+
 function login_chk()
 {
   var chk = document.loginForm;
@@ -64,6 +74,15 @@ function login_chk()
   chk.submit();
 }
 
+function my_order(){
+  var chk = document.orderForm2;
+  if(chk.m_address.value == ""){
+    alert("주소를 입력해주세요");
+    chk.m_address.focus();
+    return false;
+  }
+  chk.submit();
+}
 function logout()
 {
   location.href="logout.php";

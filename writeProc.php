@@ -18,26 +18,22 @@
   <?
     include("lib.php");
     
-    $m_id = $_SESSION[user_id];
-    $m_pw = $_SESSION[user_pw];
+    $m_name = $_POST['m_name'];
+    $m_shop = $_POST['m_shop'];
+    $m_score = $_POST['m_score'];
     $m_content = $_POST['m_content'];
-    $m_price = $_POST['m_price'];
-    $m_address = $_POST['m_address'];
-    $today = date("Y-m-d H:i:s");
+    $m_date = date("Y-m-d H:i:s");
     
-    $sql = "INSERT INTO receipt (customer, content, price, address, deliver, date) VALUES ('$m_id', '$m_content', '$m_price', '$m_address', '1', '$today')";
-    mysql_query($sql);
+    $sql = "INSERT INTO scoreboard(name,shop,content,date,score) values('$m_name','$m_shop','$m_content','$m_date','$m_score')";
+    mysql_query($sql, $conn);
+    
+    $score = mysql_query("update shop set score=(SELECT avg(score) FROM scoreboard where shop='$m_shop') where name='$m_shop'", $conn);
   ?>
   </head>
+  <body>
   <script>
-    alert("주문이 완료되었습니다.");
+    alert("입력 완료!");
     location.href="index.php";
   </script>
-  <body>
-  <?=$m_id?>
-  <?=$m_pw?>
-  <?=$m_content?>
-  <?=$m_price?>
-  <?=$m_address?>
   </body>
 </html>
