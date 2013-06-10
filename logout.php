@@ -1,5 +1,8 @@
-﻿<?
-  session_start();
+﻿<? @session_start() ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+<?
   session_unset();
   session_destroy();
   echo "
@@ -8,3 +11,5 @@
     location.href='index.php';</script>
   ";
 ?>
+</head>
+</html>
