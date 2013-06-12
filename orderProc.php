@@ -19,30 +19,29 @@
   <?
     include("lib.php");
     
-    $m_id = $_POST['m_id'];
-    $m_pw = $_POST['m_pw'];
-    $m_name = $_POST['m_name'];
-    $m_email = $_POST['m_email'];
-    $m_phone = $_POST['m_phone'];
-    $m_major = $_POST['m_major'];
+    $m_id = $_SESSION[user_id];
+    $m_name = $_SESSION[user_name];
+    $m_shop = $_POST['m_shop'];
+    $m_content = $_POST['m_content'];
+    $m_price = $_POST['m_price'];
+    $m_address = $_POST['m_address'];
+    $m_deliver = $_POST['m_deliver'];
+    $today = date("Y-m-d H:i:s");
     
-    $chk = "select * from member where id='$m_id'";
-    $chk_result = mysql_query($chk);
-    $chk_data = mysql_fetch_array($chk_result);
-    
-    if($chk_data[no]){
-      echo "<script>alert('이미 가입된 아이디입니다.');";
-      echo "history.back();</script>";
-    }else{
-      $str = "insert into member(id,pw,name,email,phone,major) values('$m_id','$m_pw','$m_name','$m_email','$m_phone','$m_major')";
-      mysql_query($str) or die(mysql_error());
-      mysql_close($conn);
-      
-      echo "<center>처리중입니다.</center>";
-      echo "<script>location.href='index.php'</script>";
-    }
+    $sql = "INSERT INTO receipt (customer, name, shop, content, price, address, deliver, date) VALUES ('$m_id', '$m_name', '$m_shop', '$m_content', '$m_price', '$m_address', '$m_deliver', '$today')";
+    mysql_query($sql);
   ?>
   </head>
+  <script>
+    alert("주문이 완료되었습니다.");
+    location.href="index.php";
+  </script>
   <body>
+  <?=$m_id?>
+  <?=$m_name?>
+  <?=$m_shop?>
+  <?=$m_content?>
+  <?=$m_price?>
+  <?=$m_address?>
   </body>
 </html>
